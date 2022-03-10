@@ -25,7 +25,7 @@ morphologyEx(img, MORPH_GRADIENT, kernel)
 morphologyEx(img, MORPH_TOPHAT, kernel)
 
 黑帽运算 = 原图 - 闭运算  得到图像内部的噪点
-morphologyEx(img, MORPH_TOPHAT, kernel)
+morphologyEx(img, MORPH_BLACKHAT, kernel)
 """
 import cv2
 import numpy as np
