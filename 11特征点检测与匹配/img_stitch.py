@@ -33,9 +33,10 @@ def get_homo(img1, img2):
 
     # 过滤特征点，找出有效的特征匹配点
     verify_matchs = []
-    verify_ratio = 0.8
+    # 经验可得这里用0.8 用0.7来测试
+    verify_ratio = 0.7
     for m1, m2 in maches:
-        if m1.distance < 0.8 * m2.distance:
+        if m1.distance < verify_ratio * m2.distance:
             verify_matchs.append(m1)
 
     min_matches = 8
@@ -110,8 +111,8 @@ def stitch_image(img1, img2, H):
 
 
 # 读取两张图片
-img1 = cv2.imread('bin1.jpg')
-img2 = cv2.imread('bin2.jpg')
+img1 = cv2.imread('bin1.png')
+img2 = cv2.imread('bin2.png')
 
 # 将两张图片设置成一样大小
 img1 = cv2.resize(img1, (640, 480))
@@ -125,5 +126,5 @@ H = get_homo(img1, img2)
 # 进行图像拼接
 result_image = stitch_image(img1, img2, H)
 
-cv2.imshow('input', result_image)
+cv2.imshow('result_image', result_image)
 cv2.waitKey(0)
